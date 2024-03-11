@@ -144,7 +144,8 @@ iOSInjectionProject/
 ### SwiftPackageManager ###
 Packages
 xcuserdata
-*.xcodeproj
+# (MANUALLY REMOVED BY ANDRE)
+# *.xcodeproj
 
 
 ### SwiftPM ###
@@ -180,13 +181,13 @@ $RECYCLE.BIN/
 
 ## Xcode 8 and earlier
 
-### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcodeproj/project.xcworkspace/
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
-**/xcshareddata/WorkspaceSettings.xcsettings
+### Xcode Patch ### (MANUALLY REMOVED BY ANDRE)
+# *.xcodeproj/*
+# !*.xcodeproj/project.pbxproj
+# !*.xcodeproj/xcshareddata/
+# !*.xcodeproj/project.xcworkspace/
+# !*.xcworkspace/contents.xcworkspacedata
+# /*.gcno
+# **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,swiftpackagemanager,swiftpm,cocoapods,macos,windows,linux

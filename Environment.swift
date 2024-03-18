@@ -60,6 +60,18 @@ class Environment {
         return self.deviceType != .phone
     }
     
+    public var applicationState: UIApplication.State {
+        UIApplication.shared.applicationState
+    }
+    
+    public var executingUIPreview: Bool {
+        return ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
+    
+    public var executingUnitTests: Bool {
+        return ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil
+    }
+    
     private init() { }
     
 }

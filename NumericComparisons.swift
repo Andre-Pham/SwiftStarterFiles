@@ -1,161 +1,169 @@
 import Foundation
 
-public let doublePrecision: Double = 1e-5
-public let floatPrecision: Float = 1e-5
-public let cgFloatPrecision: CGFloat = 1e-5
-
-// MARK: - Double
-
-/// `a < b`
-public func isLess(_ a: Double, _ b: Double, precision: Double = doublePrecision) -> Bool {
-    return (b - a > precision)
+extension Double {
+    
+    public static let defaultPrecision: Double = 1e-5
+    
+    /// `self < x`
+    public func isLess(than x: Double, precision: Double = Self.defaultPrecision) -> Bool {
+        return (x - self > precision)
+    }
+    
+    /// `self <= x`
+    public func isLessOrEqual(to x: Double, precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isLess(than: x, precision: precision)
+    }
+    
+    /// `self > x`
+    public func isGreater(than x: Double, precision: Double = Self.defaultPrecision) -> Bool {
+        return (self - x > precision)
+    }
+    
+    /// `self >= x`
+    public func isGreaterOrEqual(to x: Double, precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isGreater(than: x, precision: precision)
+    }
+    
+    /// `self == x`
+    public func isEqual(to x: Double, precision: Double = Self.defaultPrecision) -> Bool {
+        return (abs(self - x) <= precision)
+    }
+    
+    /// `self == 0`
+    public func isZero(precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self < 0`
+    public func isLessThanZero(precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isLess(than: 0.0, precision: precision)
+    }
+    
+    /// `self <= 0`
+    public func isLessOrEqualZero(precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isLessOrEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self > 0`
+    public func isGreaterThanZero(precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isGreater(than: 0.0, precision: precision)
+    }
+    
+    /// `self >= 0`
+    public func isGreaterOrEqualZero(precision: Double = Self.defaultPrecision) -> Bool {
+        return self.isGreaterOrEqual(to: 0.0, precision: precision)
+    }
+    
 }
 
-/// `a <= b`
-public func isLessOrEqual(_ a: Double, _ b: Double, precision: Double = doublePrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isLess(a, b, precision: precision))
+extension Float {
+    
+    public static let defaultPrecision: Float = 1e-5
+    
+    /// `self < x`
+    public func isLess(than x: Float, precision: Float = Self.defaultPrecision) -> Bool {
+        return (x - self > precision)
+    }
+    
+    /// `self <= x`
+    public func isLessOrEqual(to x: Float, precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isLess(than: x, precision: precision)
+    }
+    
+    /// `self > x`
+    public func isGreater(than x: Float, precision: Float = Self.defaultPrecision) -> Bool {
+        return (self - x > precision)
+    }
+    
+    /// `self >= x`
+    public func isGreaterOrEqual(to x: Float, precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isGreater(than: x, precision: precision)
+    }
+    
+    /// `self == x`
+    public func isEqual(to x: Float, precision: Float = Self.defaultPrecision) -> Bool {
+        return (abs(self - x) <= precision)
+    }
+    
+    /// `self == 0`
+    public func isZero(precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self < 0`
+    public func isLessThanZero(precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isLess(than: 0.0, precision: precision)
+    }
+    
+    /// `self <= 0`
+    public func isLessOrEqualZero(precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isLessOrEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self > 0`
+    public func isGreaterThanZero(precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isGreater(than: 0.0, precision: precision)
+    }
+    
+    /// `self >= 0`
+    public func isGreaterOrEqualZero(precision: Float = Self.defaultPrecision) -> Bool {
+        return self.isGreaterOrEqual(to: 0.0, precision: precision)
+    }
+    
 }
 
-/// `a > b`
-public func isGreater(_ a: Double, _ b: Double, precision: Double = doublePrecision) -> Bool {
-    return (a - b > precision)
-}
-
-/// `a >= b`
-public func isGreaterOrEqual(_ a: Double, _ b: Double, precision: Double = doublePrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isGreater(a, b, precision: precision))
-}
-
-/// `a == b`
-public func isEqual(_ a: Double, _ b: Double, precision: Double = doublePrecision) -> Bool {
-    return (abs(a - b) <= precision)
-}
-
-/// `x == 0`
-public func isZero(_ x: Double, precision: Double = doublePrecision) -> Bool {
-    return isEqual(x, 0.0, precision: precision)
-}
-
-/// `x < 0`
-public func isLessZero(_ x: Double, precision: Double = doublePrecision) -> Bool {
-    return isLess(x, 0.0, precision: precision)
-}
-
-/// `x <= 0`
-public func isLessOrEqualZero(_ x: Double, precision: Double = doublePrecision) -> Bool {
-    return isLessOrEqual(x, 0.0, precision: precision)
-}
-
-/// `x > 0`
-public func isGreaterZero(_ x: Double, precision: Double = doublePrecision) -> Bool {
-    return isGreater(x, 0.0, precision: precision)
-}
-
-/// `x >= 0`
-public func isGreaterOrEqualZero(_ x: Double, precision: Double = doublePrecision) -> Bool {
-    return isGreaterOrEqual(x, 0.0, precision: precision)
-}
-
-// MARK: - Float
-
-/// `a < b`
-public func isLess(_ a: Float, _ b: Float, precision: Float = floatPrecision) -> Bool {
-    return (b - a > precision)
-}
-
-/// `a <= b`
-public func isLessOrEqual(_ a: Float, _ b: Float, precision: Float = floatPrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isLess(a, b, precision: precision))
-}
-
-/// `a > b`
-public func isGreater(_ a: Float, _ b: Float, precision: Float = floatPrecision) -> Bool {
-    return (a - b > precision)
-}
-
-/// `a >= b`
-public func isGreaterOrEqual(_ a: Float, _ b: Float, precision: Float = floatPrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isGreater(a, b, precision: precision))
-}
-
-/// `a == b`
-public func isEqual(_ a: Float, _ b: Float, precision: Float = floatPrecision) -> Bool {
-    return (abs(a - b) <= precision)
-}
-
-/// `x == 0`
-public func isZero(_ x: Float, precision: Float = floatPrecision) -> Bool {
-    return isEqual(x, 0.0, precision: precision)
-}
-
-/// `x < 0`
-public func isLessZero(_ x: Float, precision: Float = floatPrecision) -> Bool {
-    return isLess(x, 0.0, precision: precision)
-}
-
-/// `x <= 0`
-public func isLessOrEqualZero(_ x: Float, precision: Float = floatPrecision) -> Bool {
-    return isLessOrEqual(x, 0.0, precision: precision)
-}
-
-/// `x > 0`
-public func isGreaterZero(_ x: Float, precision: Float = floatPrecision) -> Bool {
-    return isGreater(x, 0.0, precision: precision)
-}
-
-/// `x >= 0`
-public func isGreaterOrEqualZero(_ x: Float, precision: Float = floatPrecision) -> Bool {
-    return isGreaterOrEqual(x, 0.0, precision: precision)
-}
-
-// MARK: - CGFloat
-
-/// `a < b`
-public func isLess(_ a: CGFloat, _ b: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return (b - a > precision)
-}
-
-/// `a <= b`
-public func isLessOrEqual(_ a: CGFloat, _ b: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isLess(a, b, precision: precision))
-}
-
-/// `a > b`
-public func isGreater(_ a: CGFloat, _ b: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return (a - b > precision)
-}
-
-/// `a >= b`
-public func isGreaterOrEqual(_ a: CGFloat, _ b: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return (isEqual(a, b, precision: precision) || isGreater(a, b, precision: precision))
-}
-
-/// `a == b`
-public func isEqual(_ a: CGFloat, _ b: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return (abs(a - b) <= precision)
-}
-
-/// `x == 0`
-public func isZero(_ x: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return isEqual(x, 0.0, precision: precision)
-}
-
-/// `x < 0`
-public func isLessZero(_ x: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return isLess(x, 0.0, precision: precision)
-}
-
-/// `x <= 0`
-public func isLessOrEqualZero(_ x: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return isLessOrEqual(x, 0.0, precision: precision)
-}
-
-/// `x > 0`
-public func isGreaterZero(_ x: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return isGreater(x, 0.0, precision: precision)
-}
-
-/// `x >= 0`
-public func isGreaterOrEqualZero(_ x: CGFloat, precision: CGFloat = cgFloatPrecision) -> Bool {
-    return isGreaterOrEqual(x, 0.0, precision: precision)
+extension CGFloat {
+    
+    public static let defaultPrecision: CGFloat = 1e-5
+    
+    /// `self < x`
+    public func isLess(than x: CGFloat, precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return (x - self > precision)
+    }
+    
+    /// `self <= x`
+    public func isLessOrEqual(to x: CGFloat, precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isLess(than: x, precision: precision)
+    }
+    
+    /// `self > x`
+    public func isGreater(than x: CGFloat, precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return (self - x > precision)
+    }
+    
+    /// `self >= x`
+    public func isGreaterOrEqual(to x: CGFloat, precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: x, precision: precision) || self.isGreater(than: x, precision: precision)
+    }
+    
+    /// `self == x`
+    public func isEqual(to x: CGFloat, precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return (abs(self - x) <= precision)
+    }
+    
+    /// `self == 0`
+    public func isZero(precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self < 0`
+    public func isLessThanZero(precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isLess(than: 0.0, precision: precision)
+    }
+    
+    /// `self <= 0`
+    public func isLessOrEqualZero(precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isLessOrEqual(to: 0.0, precision: precision)
+    }
+    
+    /// `self > 0`
+    public func isGreaterThanZero(precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isGreater(than: 0.0, precision: precision)
+    }
+    
+    /// `self >= 0`
+    public func isGreaterOrEqualZero(precision: CGFloat = Self.defaultPrecision) -> Bool {
+        return self.isGreaterOrEqual(to: 0.0, precision: precision)
+    }
+    
 }

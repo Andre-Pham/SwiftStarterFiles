@@ -53,7 +53,7 @@ class Environment {
     }
     
     public var deviceIsTiny: Bool {
-        return isLessOrEqual(self.screenHeight, 667)
+        return self.screenHeight.isLessOrEqual(to: 667)
     }
     
     public var deviceIsLarge: Bool {

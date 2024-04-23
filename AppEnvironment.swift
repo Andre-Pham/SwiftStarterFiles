@@ -57,46 +57,6 @@ class AppEnvironment {
         }
     }
     
-    public var orientatedScreenAspectRatio: CGFloat {
-        switch self.interfaceOrientation {
-        case .unknown:
-            return self.screenAspectRatio
-        case .portrait, .portraitUpsideDown:
-            return self.portraitScreenAspectRatio
-        case .landscapeLeft, .landscapeRight:
-            return self.landscapeScreenAspectRatio
-        @unknown default:
-            assertionFailure("New orientation not accounted for")
-            return self.screenAspectRatio
-        }
-    }
-    
-    public var portraitScreenAspectRatio: CGFloat {
-        let width: CGFloat
-        let height: CGFloat
-        if self.deviceIsMac, let window = self.window {
-            width = window.frame.size.width
-            height = window.frame.size.height
-        } else {
-            width = UIScreen.main.bounds.width
-            height = UIScreen.main.bounds.height
-        }
-        return min(width, height)/max(width, height)
-    }
-    
-    public var landscapeScreenAspectRatio: CGFloat {
-        let width: CGFloat
-        let height: CGFloat
-        if self.deviceIsMac, let window = self.window {
-            width = window.frame.size.width
-            height = window.frame.size.height
-        } else {
-            width = UIScreen.main.bounds.width
-            height = UIScreen.main.bounds.height
-        }
-        return max(width, height)/min(width, height)
-    }
-    
     public var window: UIWindow? {
         return (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first
     }

@@ -17,6 +17,23 @@ class AppEnvironment {
         return ProcessInfo.processInfo.isiOSAppOnMac
     }
     
+    public var versionNumber: String {
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+            return "\(version)"
+        }
+        assertionFailure("Failed to get version number")
+        return ""
+    }
+    
+    public var versionAndBuildNumber: String {
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+           let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            return "\(version) (\(build))"
+        }
+        assertionFailure("Failed to get version number")
+        return ""
+    }
+    
     public var topSafeAreaHeight: CGFloat {
         return self.safeAreaInsets?.top ?? 0.0
     }

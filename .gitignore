@@ -181,8 +181,8 @@ $RECYCLE.BIN/
 ### !!! IMPORTANT !!!
 # This section is set on a project-by-project basis
 # This determines if the .xcodeproj directory is added
-# For private repos, this is fine to uncomment
-# For public repos, to avoid app duplication and re-submission, maybe best to keep this removed
+# - For private repos, this is fine to keep commented out
+# - For public repos, to avoid app duplication and re-submission, best to uncomment
 
 # *.xcodeproj/*
 # !*.xcodeproj/project.pbxproj

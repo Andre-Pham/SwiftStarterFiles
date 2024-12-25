@@ -1,5 +1,5 @@
 # TODO: Recommend calling this swift.yml
-# TODO: Change TODO below to the project scheme, (the DEBUG scheme, not the release)
+# TODO: Change TODO below to the project name and scheme, (the DEBUG scheme, not the release)
 
 name: Swift
 
@@ -21,6 +21,6 @@ jobs:
       with:
         swift-version: '5'
     - name: Build
-      run: xcodebuild -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' clean build
+      run: xcodebuild -project ./TODO/TODO.xcodeproj -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' clean build
     - name: Run Tests
-      run: xcodebuild -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' test
+      run: xcodebuild -project ./TODO/TODO.xcodeproj -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' test

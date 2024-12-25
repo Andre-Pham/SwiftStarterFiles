@@ -1,0 +1,26 @@
+# TODO: Recommend calling this swift.yml
+# TODO: Change TODO below to the project scheme, (the DEBUG scheme, not the release)
+
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: '5'
+    - name: Build
+      run: xcodebuild -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' clean build
+    - name: Run Tests
+      run: xcodebuild -scheme TODO -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' test
